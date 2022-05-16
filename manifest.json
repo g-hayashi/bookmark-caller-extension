@@ -1,0 +1,32 @@
+{
+  "name": "bookmark_caller",
+  "description": "A browser action with a popup dump of all bookmarks and associate shortcut key",
+  "version": "1.0",
+  "manifest_version": 2,
+  "permissions": [
+    "bookmarks",
+    "tabs",
+    "storage"
+  ],
+  "browser_action": {
+    "browser_style": true,
+    "default_title": "Bookmark shortcut",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "event.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*"
+      ],
+      "js": [
+        "./static/jquery_min.js",
+        "./static/mousetrap.js",
+        "content.js"
+      ]
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
